@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Network Status</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    #status {
+      font-size: 2.5rem;
+      padding: 20px 40px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .online {
+      background: #1f9d55;
+    }
+
+    .offline {
+      background: #e53e3e;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Network Status</h1>
+  <h1 id="status"></h1>
+
+  <script>
+    const status = document.getElementById("status");
+
+    function updateStatus() {
+      if (navigator.onLine) {
+        status.textContent = "🟢 You are Online";
+        status.className = "online";
+      } else {
+        status.textContent = "🔴 You are Offline";
+        status.className = "offline";
+      }
+    }
+
+    // Initial check
+    updateStatus();
+
+    // Event listeners
+    window.addEventListener("online", updateStatus);
+    window.addEventListener("offline", updateStatus);
+  </script>
+</body>
+</html>
